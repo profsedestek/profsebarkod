@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useLocation, Outlet } from "react-router";
+import { Link, useLocation, Outlet, useNavigate } from "react-router";
 import {
   LayoutDashboard, Package, Plus, Settings, ChevronLeft,
-  Menu, X, ExternalLink
+  Menu, X, ExternalLink, LogOut, User
 } from "lucide-react";
 import { ProfseIcon, ProfseLongLogo } from "../../components/ProfseLogos";
+import { signOut } from "../../lib/supabase";
 
 const navItems = [
   { to: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
@@ -16,6 +17,12 @@ export function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  async function handleSignOut() {
+    await signOut();
+    navigate('/admin/login');
+  }
 
   function isActive(to: string, exact?: boolean) {
     if (exact) return location.pathname === to;
@@ -125,9 +132,14 @@ export function AdminLayout() {
             >
               <ExternalLink className="w-4 h-4" /> Siteyi Görüntüle
             </Link>
-            <div className="w-8 h-8 bg-[#0D47A1] rounded-full flex items-center justify-center text-white font-bold text-sm">
-              A
-            </div>
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors"
+              title="Çıkış Yap"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="text-sm hidden sm:inline">Çıkış</span>
+            </button>
           </div>
         </header>
 
