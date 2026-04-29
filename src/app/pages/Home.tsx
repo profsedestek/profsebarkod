@@ -40,18 +40,18 @@ export function Home() {
       {/* ── HERO ── */}
       <section className="relative bg-gradient-to-br from-[#0D47A1] via-[#1565C0] to-[#1976D2] pt-16 overflow-hidden">
         {/* decorative circles */}
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#FFC107]/10 rounded-full" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-gray-900/10 rounded-full" />
         <div className="absolute bottom-0 -left-10 w-64 h-64 bg-white/5 rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12">
           <div className="flex-1 text-center lg:text-left z-10">
-            <div className="inline-flex items-center gap-2 bg-[#FFC107]/20 border border-[#FFC107]/40 rounded-full px-4 py-1 mb-6">
-              <Zap className="w-4 h-4 text-[#FFC107]" />
-              <span className="text-[#FFC107] text-sm font-medium">Türkiye'nin Lider Barkod Çözüm Ortağı</span>
+            <div className="inline-flex items-center gap-2 bg-gray-900/20 border border-gray-900/40 rounded-full px-4 py-1 mb-6">
+              <Zap className="w-4 h-4 text-gray-900" />
+              <span className="text-gray-900 text-sm font-medium">Türkiye'nin Lider Barkod Çözüm Ortağı</span>
             </div>
             <h1 className="text-white text-4xl lg:text-6xl font-extrabold leading-tight mb-6">
               İşletmeniz İçin <br />
-              <span className="text-[#FFC107]">Eksiksiz Barkod</span><br />
+              <span className="text-gray-900">Eksiksiz Barkod</span><br />
               Çözümleri
             </h1>
             <p className="text-white/80 text-lg max-w-xl mb-8">
@@ -60,7 +60,7 @@ export function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
                 href="#paketler"
-                className="bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg"
+                className="bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg"
               >
                 Paketleri Keşfet <ArrowRight className="w-5 h-5" />
               </a>
@@ -80,7 +80,7 @@ export function Home() {
                 { value: "7/24", label: "Teknik Destek" },
               ].map((s) => (
                 <div key={s.label} className="text-center">
-                  <div className="text-[#FFC107] text-2xl font-extrabold">{s.value}</div>
+                  <div className="text-gray-900 text-2xl font-extrabold">{s.value}</div>
                   <div className="text-white/70 text-xs mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -90,16 +90,16 @@ export function Home() {
           {/* Hero image */}
           <div className="flex-1 flex justify-center z-10">
             <div className="relative w-full max-w-lg">
-              <div className="absolute inset-0 bg-[#FFC107]/20 rounded-3xl rotate-3" />
+              <div className="absolute inset-0 bg-gray-900/20 rounded-3xl rotate-3" />
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1623123096729-26b481292919?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
                 alt="Barkod Sistemleri"
-                className="relative rounded-3xl shadow-2xl w-full object-cover h-72 lg:h-96"
+                className="relative rounded-3xl shadow-2xl w-full object-cover h-72 lg:h-96 animate-float"
               />
               {/* floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
                 <div className="bg-[#0D47A1] rounded-xl p-2.5">
-                  <Shield className="w-5 h-5 text-[#FFC107]" />
+                  <Shield className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <div className="text-[#0D47A1] font-bold text-sm">2 Yıl Garanti</div>
@@ -157,12 +157,12 @@ export function Home() {
               <div
                 key={pkg.id}
                 className={`relative bg-white rounded-2xl shadow-sm border-2 flex flex-col overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 ${
-                  pkg.isPopular ? "border-[#FFC107]" : "border-transparent"
+                  pkg.isPopular ? "border-gray-900" : "border-transparent"
                 }`}
               >
                 {pkg.badge && (
                   <div className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-bold ${
-                    pkg.isPopular ? "bg-[#FFC107] text-[#0D47A1]" : "bg-[#0D47A1] text-white"
+                    pkg.isPopular ? "bg-gray-900 text-white" : "bg-[#0D47A1] text-white"
                   }`}>
                     {pkg.badge}
                   </div>
@@ -236,7 +236,7 @@ export function Home() {
       <section id="ozellikler" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="inline-block bg-[#FFC107]/20 text-[#B8860B] text-sm font-semibold px-4 py-1 rounded-full mb-4">Özellikler</span>
+            <span className="inline-block bg-gray-900/20 text-gray-900 text-sm font-semibold px-4 py-1 rounded-full mb-4">Özellikler</span>
             <h2 className="text-gray-900 text-3xl lg:text-4xl font-extrabold mb-4">Neden PROFSE Bilişim?</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">15 yılı aşkın deneyimimizle sektörün en güvenilir barkod çözüm ortağıyız.</p>
           </div>
@@ -244,11 +244,11 @@ export function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: Shield, title: "Garanti & Güvence", desc: "Tüm ürünlerimizde 1-2 yıl resmi garanti. Sorun yaşarsanız yanınızdayız.", color: "bg-blue-50 text-[#0D47A1]" },
-              { icon: Headphones, title: "7/24 Teknik Destek", desc: "Haftanın 7 günü, günün 24 saati teknik destek ekibimiz sizin için hazır.", color: "bg-yellow-50 text-[#B8860B]" },
+              { icon: Headphones, title: "7/24 Teknik Destek", desc: "Haftanın 7 günü, günün 24 saati teknik destek ekibimiz sizin için hazır.", color: "bg-gray-900 text-white" },
               { icon: Truck, title: "Hızlı Teslimat", desc: "Sipariş verdiğiniz gün kargoya verilir, 2 iş günü içinde elinizde.", color: "bg-blue-50 text-[#0D47A1]" },
-              { icon: Users, title: "Profesyonel Kurulum", desc: "Deneyimli teknisyenlerimiz sisteminizi yerinde kurar ve test eder.", color: "bg-yellow-50 text-[#B8860B]" },
+              { icon: Users, title: "Profesyonel Kurulum", desc: "Deneyimli teknisyenlerimiz sisteminizi yerinde kurar ve test eder.", color: "bg-gray-900 text-white" },
               { icon: BarChart3, title: "Yazılım Entegrasyonu", desc: "Popüler muhasebe ve stok yazılımlarıyla tam entegrasyon sağlıyoruz.", color: "bg-blue-50 text-[#0D47A1]" },
-              { icon: Award, title: "Yetkili Servis", desc: "Dünyaca tanınan markaların Türkiye yetkili bayii ve servisiyiz.", color: "bg-yellow-50 text-[#B8860B]" },
+              { icon: Award, title: "Yetkili Servis", desc: "Dünyaca tanınan markaların Türkiye yetkili bayii ve servisiyiz.", color: "bg-gray-900 text-white" },
             ].map((f) => (
               <div key={f.title} className="flex gap-4 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
                 <div className={`${f.color} rounded-xl p-3 h-12 w-12 flex items-center justify-center flex-shrink-0`}>
@@ -275,7 +275,7 @@ export function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+903426060890"
-                className="bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold px-8 py-3.5 rounded-xl flex items-center gap-2 transition-colors"
+                className="bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 py-3.5 rounded-xl flex items-center gap-2 transition-colors"
               >
                 <Phone className="w-5 h-5" /> Hemen Ara
               </a>
@@ -305,7 +305,7 @@ export function Home() {
             ].map((t) => (
               <div key={t.name} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 fill-[#FFC107] text-[#FFC107]" />)}
+                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 fill-gray-900 text-gray-900" />)}
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-5">"{t.comment}"</p>
                 <div className="flex items-center gap-3">
@@ -328,7 +328,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <span className="inline-block bg-[#FFC107]/20 text-[#B8860B] text-sm font-semibold px-4 py-1 rounded-full mb-4">İletişim</span>
+              <span className="inline-block bg-gray-900/20 text-gray-900 text-sm font-semibold px-4 py-1 rounded-full mb-4">İletişim</span>
               <h2 className="text-gray-900 text-3xl font-extrabold mb-4">Bizimle İletişime Geçin</h2>
               <p className="text-gray-500 mb-8 leading-relaxed">
                 İhtiyacınıza en uygun paketi belirlemek için uzman ekibimizle iletişime geçin. Ücretsiz teknik danışmanlık sunuyoruz.
@@ -341,7 +341,7 @@ export function Home() {
                 ].map((c) => (
                   <div key={c.label} className="flex items-center gap-4">
                     <div className="bg-[#0D47A1] rounded-xl p-3">
-                      <c.icon className="w-5 h-5 text-[#FFC107]" />
+                      <c.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <div className="text-gray-400 text-xs mb-0.5">{c.label}</div>
@@ -400,12 +400,12 @@ export function Home() {
             <div className="md:col-span-2">
               {/* Real SVG logo */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="bg-[#FFC107] rounded-lg p-2 flex items-center justify-center">
-                  <ProfseIcon className="w-8 h-8 text-[#0D47A1]" />
+                <div className="bg-gray-900 rounded-lg p-2 flex items-center justify-center">
+                  <ProfseIcon className="w-8 h-8 text-white" />
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <ProfseLongLogo className="h-5 w-auto text-white" />
-                  <span className="text-[#FFC107] text-[10px] font-semibold tracking-[0.2em] uppercase">
+                  <span className="text-white text-[10px] font-semibold tracking-[0.2em] uppercase">
                     Bilişim
                   </span>
                 </div>
@@ -415,7 +415,7 @@ export function Home() {
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4 text-[#FFC107]">Hızlı Bağlantılar</h4>
+              <h4 className="font-bold mb-4 text-white">Hızlı Bağlantılar</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="#paketler" className="hover:text-white transition-colors">Paketler</a></li>
                 <li><a href="#ozellikler" className="hover:text-white transition-colors">Özellikler</a></li>
@@ -424,7 +424,7 @@ export function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4 text-[#FFC107]">İletişim</h4>
+              <h4 className="font-bold mb-4 text-white">İletişim</h4>
               <ul className="space-y-2.5 text-sm text-gray-400">
                 <li>
                   <a href="tel:+903426060890" className="hover:text-white transition-colors">

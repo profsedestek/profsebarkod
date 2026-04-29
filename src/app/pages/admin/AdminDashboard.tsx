@@ -20,7 +20,7 @@ export function AdminDashboard() {
 
   const stats = [
     { icon: Package, label: "Toplam Paket", value: packages.length, color: "bg-[#0D47A1]", change: "+2 bu ay" },
-    { icon: BarChart3, label: "Toplam Ürün", value: totalProducts, color: "bg-[#FFC107]", change: `${categories.length} kategori` },
+    { icon: BarChart3, label: "Toplam Ürün", value: totalProducts, color: "bg-gray-900", change: `${categories.length} kategori` },
     { icon: Star, label: "Öne Çıkan", value: popularPkgs.length, color: "bg-green-600", change: "Aktif paketler" },
     { icon: TrendingUp, label: "Kategoriler", value: categories.length, color: "bg-purple-600", change: "Farklı sektör" },
   ];
@@ -80,7 +80,7 @@ export function AdminDashboard() {
                 <div className="flex items-center gap-3">
                   <span className="text-[#0D47A1] font-bold text-sm">{formatPrice(pkg.price)}</span>
                   {pkg.isPopular && (
-                    <span className="bg-[#FFC107] text-[#0D47A1] text-xs font-bold px-2 py-0.5 rounded-full">Popüler</span>
+                    <span className="bg-gray-900/20 text-gray-900 text-xs font-bold px-2 py-0.5 rounded-full">Popüler</span>
                   )}
                   <Link
                     to={`/admin/paketler/${pkg.id}/duzenle`}
@@ -121,7 +121,7 @@ export function AdminDashboard() {
           <div className="mt-5 pt-4 border-t border-gray-100">
             <Link
               to="/admin/paketler/yeni"
-              className="w-full bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm"
+              className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm"
             >
               <Plus className="w-4 h-4" /> Yeni Paket Ekle
             </Link>
@@ -149,7 +149,7 @@ export function AdminDashboard() {
           <Link
             to="/"
             target="_blank"
-            className="bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] text-sm font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
+            className="bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
           >
             <Eye className="w-4 h-4" /> Siteyi Görüntüle
           </Link>

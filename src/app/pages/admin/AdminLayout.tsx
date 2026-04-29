@@ -26,13 +26,13 @@ export function AdminLayout() {
     <div className={`flex flex-col h-full bg-[#0A0A0A] ${mobile ? "w-72" : collapsed ? "w-16" : "w-64"} transition-all duration-300`}>
       {/* Logo */}
       <div className={`flex items-center ${collapsed && !mobile ? "justify-center px-3" : "px-5"} py-5 border-b border-white/10`}>
-        <div className="bg-[#FFC107] rounded-lg p-1.5 flex-shrink-0 flex items-center justify-center">
-          <ProfseIcon className="w-5 h-5 text-[#0D47A1]" />
+        <div className="bg-gray-900 rounded-lg p-1.5 flex-shrink-0 flex items-center justify-center">
+          <ProfseIcon className="w-5 h-5 text-white" />
         </div>
         {(!collapsed || mobile) && (
           <div className="ml-2 overflow-hidden flex flex-col gap-0.5">
             <ProfseLongLogo className="h-4 w-auto text-white" />
-            <span className="text-[#FFC107] text-[9px] font-semibold tracking-[0.18em] uppercase">Yönetim</span>
+            <span className="text-gray-700 text-[9px] font-semibold tracking-[0.18em] uppercase">Yönetim</span>
           </div>
         )}
         {!mobile && (

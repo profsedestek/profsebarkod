@@ -117,7 +117,7 @@ export function AdminPackages() {
                           <div className="text-gray-900 font-semibold text-sm">{pkg.name}</div>
                           {pkg.badge && (
                             <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${
-                              pkg.isPopular ? "bg-[#FFC107]/20 text-[#B8860B]" : "bg-blue-50 text-[#0D47A1]"
+                              pkg.isPopular ? "bg-gray-900/20 text-gray-900" : "bg-blue-50 text-[#0D47A1]"
                             }`}>
                               {pkg.badge}
                             </span>

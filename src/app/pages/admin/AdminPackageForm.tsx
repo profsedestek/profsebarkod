@@ -347,7 +347,7 @@ export function AdminPackageForm() {
                 {form.products.map((prod, i) => (
                   <div key={prod.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="bg-[#0D47A1] rounded-xl p-2 flex-shrink-0 mt-0.5">
-                      <ProductIcon name={prod.icon} className="w-4 h-4 text-[#FFC107]" />
+                      <ProductIcon name={prod.icon} className="w-4 h-4 text-white" />
                     </div>
                     <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
                       <input
@@ -520,7 +520,7 @@ export function AdminPackageForm() {
                   </div>
                   <button
                     onClick={addCustomProduct}
-                    className="w-full bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm"
+                    className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm"
                   >
                     <Plus className="w-4 h-4" /> Özel Ürün Ekle
                   </button>

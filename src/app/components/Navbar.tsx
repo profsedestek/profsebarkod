@@ -18,35 +18,35 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             {/* Icon mark — always visible */}
-            <div className="bg-[#FFC107] rounded-lg p-1.5 flex items-center justify-center flex-shrink-0">
-              <ProfseIcon className="w-7 h-7 text-[#0D47A1]" />
+            <div className="bg-gray-900 rounded-lg p-1.5 flex items-center justify-center flex-shrink-0">
+              <ProfseIcon className="w-7 h-7 text-white" />
             </div>
             {/* Full wordmark — hidden on very small screens */}
             <div className="hidden xs:flex flex-col leading-none -space-y-0.5">
               <ProfseLongLogo className="h-5 w-auto text-white" />
-              <span className="text-[#FFC107] text-[10px] font-semibold tracking-[0.2em] uppercase pl-0.5">
+              <span className="text-gray-900 text-[10px] font-semibold tracking-[0.2em] uppercase pl-0.5">
                 Bilişim
               </span>
             </div>
             {/* Fallback text on xs */}
-            <div className="xs:hidden flex flex-col leading-none">
-              <span className="text-white font-extrabold text-base tracking-wide">PROFSE</span>
-              <span className="text-[#FFC107] text-[9px] font-semibold tracking-widest">BİLİŞİM</span>
+            <div className="xs:hidden flex flex-col leading-none gap-0.5">
+              <ProfseLongLogo className="h-5 w-auto text-white" />
+              <span className="text-gray-900 text-[9px] font-semibold tracking-widest">BİLİŞİM</span>
             </div>
           </Link>
 
           {/* Desktop Nav links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#paketler" className="text-white/90 hover:text-[#FFC107] transition-colors text-sm font-medium">
+            <a href="#paketler" className="text-white/90 hover:text-white transition-colors text-sm font-medium">
               Paketler
             </a>
-            <a href="#ozellikler" className="text-white/90 hover:text-[#FFC107] transition-colors text-sm font-medium">
+            <a href="#ozellikler" className="text-white/90 hover:text-white transition-colors text-sm font-medium">
               Özellikler
             </a>
-            <a href="#neden-biz" className="text-white/90 hover:text-[#FFC107] transition-colors text-sm font-medium">
+            <a href="#neden-biz" className="text-white/90 hover:text-white transition-colors text-sm font-medium">
               Neden Biz?
             </a>
-            <a href="#iletisim" className="text-white/90 hover:text-[#FFC107] transition-colors text-sm font-medium">
+            <a href="#iletisim" className="text-white/90 hover:text-white transition-colors text-sm font-medium">
               İletişim
             </a>
           </div>
@@ -68,7 +68,7 @@ export function Navbar() {
             </Link>
             <a
               href="#iletisim"
-              className="bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold px-5 py-2 rounded-lg text-sm transition-colors shadow-sm"
+              className="bg-gray-900 hover:bg-gray-800 text-white font-bold px-5 py-2 rounded-lg text-sm transition-colors shadow-sm"
             >
               Teklif Al
             </a>
@@ -88,16 +88,16 @@ export function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-[#0B3D8C] border-t border-blue-700 px-4 py-4 flex flex-col gap-4">
-          <a href="#paketler" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-[#FFC107] text-sm font-medium py-1">
+          <a href="#paketler" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-white text-sm font-medium py-1">
             Paketler
           </a>
-          <a href="#ozellikler" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-[#FFC107] text-sm font-medium py-1">
+          <a href="#ozellikler" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-white text-sm font-medium py-1">
             Özellikler
           </a>
-          <a href="#neden-biz" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-[#FFC107] text-sm font-medium py-1">
+          <a href="#neden-biz" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-white text-sm font-medium py-1">
             Neden Biz?
           </a>
-          <a href="#iletisim" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-[#FFC107] text-sm font-medium py-1">
+          <a href="#iletisim" onClick={() => setMobileOpen(false)} className="text-white/90 hover:text-white text-sm font-medium py-1">
             İletişim
           </a>
           <a href="tel:+903426060890" className="flex items-center gap-2 text-white/70 text-sm py-1">
@@ -107,7 +107,7 @@ export function Navbar() {
             <a
               href="#iletisim"
               onClick={() => setMobileOpen(false)}
-              className="flex-1 bg-[#FFC107] text-[#0D47A1] font-bold px-5 py-2.5 rounded-lg text-sm text-center"
+              className="flex-1 bg-gray-900 text-white font-bold px-5 py-2.5 rounded-lg text-sm text-center"
             >
               Teklif Al
             </a>

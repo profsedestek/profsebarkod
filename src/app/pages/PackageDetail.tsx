@@ -71,7 +71,7 @@ export function PackageDetail() {
               />
               {pkg.badge && (
                 <div className={`absolute top-4 left-4 px-4 py-1.5 rounded-full text-sm font-bold ${
-                  pkg.isPopular ? "bg-[#FFC107] text-[#0D47A1]" : "bg-[#0D47A1] text-white"
+                  pkg.isPopular ? "bg-gray-900 text-white" : "bg-[#0D47A1] text-white"
                 }`}>
                   {pkg.badge}
                 </div>
@@ -113,14 +113,14 @@ export function PackageDetail() {
                 {pkg.products.map((prod) => (
                   <div key={prod.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="bg-[#0D47A1] rounded-xl p-2.5 flex-shrink-0">
-                      <ProductIcon name={prod.icon} className="w-5 h-5 text-[#FFC107]" />
+                      <ProductIcon name={prod.icon} className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
                       <div className="text-gray-900 font-semibold text-sm">{prod.name}</div>
                       <div className="text-gray-500 text-xs mt-0.5">{prod.description}</div>
                     </div>
                     {prod.quantity > 1 && (
-                      <div className="bg-[#FFC107] text-[#0D47A1] font-bold text-xs px-2 py-0.5 rounded-full">
+                      <div className="bg-gray-900/20 text-gray-900 font-bold text-xs px-2 py-0.5 rounded-full">
                         x{prod.quantity}
                       </div>
                     )}
@@ -148,7 +148,7 @@ export function PackageDetail() {
                 </a>
                 <a
                   href="mailto:info@profse.com.tr"
-                  className="w-full bg-[#FFC107] hover:bg-[#FFB300] text-[#0D47A1] font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                   <Mail className="w-5 h-5" /> Teklif İste
                 </a>
@@ -178,7 +178,7 @@ export function PackageDetail() {
             {/* Rating */}
             <div className="bg-[#0D47A1] rounded-2xl p-6 text-white">
               <div className="flex gap-1 mb-3">
-                {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 fill-[#FFC107] text-[#FFC107]" />)}
+                {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 fill-gray-900 text-gray-900" />)}
               </div>
               <p className="text-white/80 text-sm leading-relaxed mb-4">
                 "Bu paket işletmemizin verimliliğini %40 artırdı. Kesinlikle tavsiye ediyorum."
