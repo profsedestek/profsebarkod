@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://profse.com.tr/sitemap.xml
+
+# Crawl-delay for bots
+Crawl-delay: 1
+
+# Disallow admin area
+User-agent: *
+Disallow: /admin/
+Disallow: /admin/*
+
+# Allow major search engines full access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
