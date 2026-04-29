@@ -28,7 +28,13 @@ export function PackageDetail() {
   const [pkg, setPkg] = useState<PackageType | undefined>();
 
   useEffect(() => {
-    if (id) setPkg(getPackageById(id));
+    async function load() {
+      if (id) {
+        const pkg = await getPackageById(id);
+        setPkg(pkg);
+      }
+    }
+    load();
   }, [id]);
 
   if (!pkg) {

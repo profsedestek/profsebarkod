@@ -6,9 +6,10 @@ import {
   Network, Zap, Star, X, CheckCircle2, AlertCircle
 } from "lucide-react";
 import {
-  getPackageById, createPackage, updatePackage,
+  getPackageById,
   CATEGORIES, AVAILABLE_PRODUCTS, type Package as PackageType, type Product
 } from "../../data/store";
+import { createPackageInSupabase, updatePackageInSupabase } from "../../lib/supabase";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Scan, Printer, Monitor, Computer, Smartphone, Server, Receipt, Scale, Package, Layers,
@@ -47,23 +48,26 @@ export function AdminPackageForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
 
   useEffect(() => {
-    if (isEdit && id) {
-      const pkg = getPackageById(id);
-      if (pkg) {
-        setForm({
-          name: pkg.name,
-          description: pkg.description,
-          price: String(pkg.price),
-          oldPrice: pkg.oldPrice ? String(pkg.oldPrice) : "",
-          category: pkg.category,
-          image: pkg.image,
-          badge: pkg.badge || "",
-          isPopular: pkg.isPopular || false,
-          features: pkg.features?.length ? pkg.features : [""],
-          products: pkg.products,
-        });
+    async function loadPackage() {
+      if (isEdit && id) {
+        const pkg = await getPackageById(id);
+        if (pkg) {
+          setForm({
+            name: pkg.name,
+            description: pkg.description,
+            price: String(pkg.price),
+            oldPrice: pkg.oldPrice ? String(pkg.oldPrice) : "",
+            category: pkg.category,
+            image: pkg.image,
+            badge: pkg.badge || "",
+            isPopular: pkg.isPopular || false,
+            features: pkg.features?.length ? pkg.features : [""],
+            products: pkg.products,
+          });
+        }
       }
     }
+    loadPackage();
   }, [id, isEdit]);
 
   function validate() {
@@ -76,7 +80,7 @@ export function AdminPackageForm() {
     return Object.keys(e).length === 0;
   }
 
-  function handleSave() {
+  async function handleSave() {
     if (!validate()) return;
 
     const data: Omit<PackageType, "id" | "createdAt"> = {
@@ -93,9 +97,9 @@ export function AdminPackageForm() {
     };
 
     if (isEdit && id) {
-      updatePackage(id, data);
+      await updatePackageInSupabase(id, data);
     } else {
-      createPackage(data);
+      await createPackageInSupabase(data);
     }
 
     setSaved(true);

@@ -39,9 +39,36 @@ export async function getPackagesFromSupabase(): Promise<Package[]> {
   
   return data?.map(pkg => ({
     ...pkg,
+    oldPrice: pkg.old_price,
+    isPopular: pkg.is_popular,
+    createdAt: pkg.created_at,
     products: pkg.products || [],
     features: pkg.features || [],
   })) || [];
+}
+
+export async function getPackageByIdFromSupabase(id: string): Promise<Package | null> {
+  const { data, error } = await supabase
+    .from('packages')
+    .select('*')
+    .eq('id', id)
+    .single();
+  
+  if (error) {
+    console.error('Error fetching package:', error);
+    return null;
+  }
+  
+  if (!data) return null;
+  
+  return {
+    ...data,
+    oldPrice: data.old_price,
+    isPopular: data.is_popular,
+    createdAt: data.created_at,
+    products: data.products || [],
+    features: data.features || [],
+  };
 }
 
 export async function createPackageInSupabase(pkg: Omit<Package, 'id' | 'createdAt'>): Promise<Package | null> {

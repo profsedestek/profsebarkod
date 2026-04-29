@@ -29,7 +29,11 @@ export function Home() {
   const [activeCategory, setActiveCategory] = useState("Tümü");
 
   useEffect(() => {
-    setPackages(getPackages());
+    async function load() {
+      const pkgs = await getPackages();
+      setPackages(pkgs);
+    }
+    load();
   }, []);
 
   const categories = ["Tümü", ...Array.from(new Set(packages.map((p) => p.category)))];

@@ -104,7 +104,15 @@ const defaultPackages: Package[] = [
 
 const STORAGE_KEY = "profse_packages";
 
-export function getPackages(): Package[] {
+import { getPackagesFromSupabase, getPackageByIdFromSupabase } from "../lib/supabase";
+
+export async function getPackages(): Promise<Package[]> {
+  const packages = await getPackagesFromSupabase();
+  return packages.length > 0 ? packages : defaultPackages;
+}
+
+// Sync version for fallback
+export function getPackagesSync(): Package[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return JSON.parse(stored);
@@ -116,12 +124,14 @@ export function savePackages(packages: Package[]): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(packages));
 }
 
-export function getPackageById(id: string): Package | undefined {
-  return getPackages().find((p) => p.id === id);
+export async function getPackageById(id: string): Promise<Package | undefined> {
+  const pkg = await getPackageByIdFromSupabase(id);
+  if (pkg) return pkg;
+  return getPackagesSync().find((p) => p.id === id);
 }
 
 export function createPackage(pkg: Omit<Package, "id" | "createdAt">): Package {
-  const packages = getPackages();
+  const packages = getPackagesSync();
   const newPkg: Package = {
     ...pkg,
     id: `pkg-${Date.now()}`,
@@ -133,8 +143,8 @@ export function createPackage(pkg: Omit<Package, "id" | "createdAt">): Package {
 }
 
 export function updatePackage(id: string, updates: Partial<Package>): Package | null {
-  const packages = getPackages();
-  const index = packages.findIndex((p) => p.id === id);
+  const packages = getPackagesSync();
+  const index = packages.findIndex((p: Package) => p.id === id);
   if (index === -1) return null;
   packages[index] = { ...packages[index], ...updates };
   savePackages(packages);
@@ -142,8 +152,8 @@ export function updatePackage(id: string, updates: Partial<Package>): Package | 
 }
 
 export function deletePackage(id: string): boolean {
-  const packages = getPackages();
-  const filtered = packages.filter((p) => p.id !== id);
+  const packages = getPackagesSync();
+  const filtered = packages.filter((p: Package) => p.id !== id);
   if (filtered.length === packages.length) return false;
   savePackages(filtered);
   return true;

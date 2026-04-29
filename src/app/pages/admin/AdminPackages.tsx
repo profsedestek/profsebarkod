@@ -4,7 +4,8 @@ import {
   Plus, Edit, Trash2, Search, Filter, Package, Eye,
   Star, ChevronUp, ChevronDown
 } from "lucide-react";
-import { getPackages, deletePackage, type Package as PackageType } from "../../data/store";
+import { getPackages, type Package as PackageType } from "../../data/store";
+import { deletePackageFromSupabase } from "../../lib/supabase";
 
 function formatPrice(price: number) {
   return price.toLocaleString("tr-TR") + " ₺";
@@ -16,8 +17,9 @@ export function AdminPackages() {
   const [categoryFilter, setCategoryFilter] = useState("Tümü");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
-  function load() {
-    setPackages(getPackages());
+  async function load() {
+    const pkgs = await getPackages();
+    setPackages(pkgs);
   }
 
   useEffect(() => {
@@ -33,8 +35,8 @@ export function AdminPackages() {
     return matchSearch && matchCat;
   });
 
-  function handleDelete(id: string) {
-    deletePackage(id);
+  async function handleDelete(id: string) {
+    await deletePackageFromSupabase(id);
     setConfirmDelete(null);
     load();
   }

@@ -11,7 +11,11 @@ export function AdminDashboard() {
   const [packages, setPackages] = useState<PackageType[]>([]);
 
   useEffect(() => {
-    setPackages(getPackages());
+    async function load() {
+      const pkgs = await getPackages();
+      setPackages(pkgs);
+    }
+    load();
   }, []);
 
   const totalProducts = packages.reduce((acc, p) => acc + p.products.length, 0);
