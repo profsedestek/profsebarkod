@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import {
   Scan, Printer, Monitor, Computer, Phone, Mail, MapPin,
@@ -9,6 +9,8 @@ import {
 import { getPackages, type Package as PackageType } from "../data/store";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ProfseIcon, ProfseLongLogo } from "../components/ProfseLogos";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Scan, Printer, Monitor, Computer, Smartphone, Server, Receipt, Scale, Package, Layers,
@@ -27,6 +29,8 @@ function formatPrice(price: number) {
 export function Home() {
   const [packages, setPackages] = useState<PackageType[]>([]);
   const [activeCategory, setActiveCategory] = useState("Tümü");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     async function load() {
@@ -35,6 +39,27 @@ export function Home() {
     }
     load();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+    try {
+      await emailjs.sendForm(
+        "service_xez4ehl",
+        "template_qy5c5gg",
+        formRef.current,
+        { publicKey: "RTHndDsluEGonvMrZ" }
+      );
+      toast.success("Teklif talebiniz başarıyla gönderildi!");
+      formRef.current.reset();
+    } catch (error) {
+      toast.error("Teklif gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const categories = ["Tümü", ...Array.from(new Set(packages.map((p) => p.category)))];
   const filtered = activeCategory === "Tümü" ? packages : packages.filter((p) => p.category === activeCategory);
@@ -358,38 +383,39 @@ export function Home() {
 
             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
               <h3 className="text-gray-900 font-bold text-xl mb-6">Teklif Formu</h3>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm text-gray-600 mb-1.5 block">Ad Soyad</label>
-                    <input type="text" placeholder="Adınız Soyadınız" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
+                    <input name="name" type="text" placeholder="Adınız Soyadınız" required className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
                   </div>
                   <div>
                     <label className="text-sm text-gray-600 mb-1.5 block">Telefon</label>
-                    <input type="tel" placeholder="05XX XXX XX XX" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
+                    <input name="phone" type="tel" placeholder="05XX XXX XX XX" required className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm text-gray-600 mb-1.5 block">E-posta</label>
-                  <input type="email" placeholder="ornek@email.com" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
+                  <input name="email" type="email" placeholder="ornek@email.com" required className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10" />
                 </div>
                 <div>
                   <label className="text-sm text-gray-600 mb-1.5 block">İlgilendiğiniz Paket</label>
-                  <select className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10 bg-white">
-                    <option>Seçiniz...</option>
-                    {packages.map((p) => <option key={p.id}>{p.name}</option>)}
-                    <option>Özel Paket</option>
+                  <select name="package" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10 bg-white">
+                    <option value="">Seçiniz...</option>
+                    {packages.map((p) => <option key={p.id} value={p.name}>{p.name}</option>)}
+                    <option value="Özel Paket">Özel Paket</option>
                   </select>
                 </div>
                 <div>
                   <label className="text-sm text-gray-600 mb-1.5 block">Mesajınız</label>
-                  <textarea rows={3} placeholder="İşletmeniz hakkında kısaca bilgi verin..." className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10 resize-none" />
+                  <textarea name="message" rows={3} placeholder="İşletmeniz hakkında kısaca bilgi verin..." className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0D47A1] focus:ring-2 focus:ring-[#0D47A1]/10 resize-none" />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#0D47A1] hover:bg-[#1565C0] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#0D47A1] hover:bg-[#1565C1] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
-                  Teklif Gönder <ArrowRight className="w-5 h-5" />
+                  {isSubmitting ? "Gönderiliyor..." : "Teklif Gönder"} <ArrowRight className="w-5 h-5" />
                 </button>
               </form>
             </div>

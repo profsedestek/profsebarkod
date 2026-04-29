@@ -10,12 +10,14 @@ import { AdminLogin } from "./pages/admin/AdminLogin";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Outlet } from "react-router";
+import { Toaster } from "sonner";
 
 function PublicLayout() {
   return (
     <>
       <Navbar />
       <Outlet />
+      <Toaster position="top-right" richColors />
     </>
   );
 }
