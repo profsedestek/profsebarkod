@@ -4,7 +4,7 @@ import {
   ArrowLeft, CheckCircle2, Phone, Mail, Scan, Printer, Monitor,
   Computer, Smartphone, Server, Receipt, Scale, Package, Layers,
   Briefcase, Network, Zap, ShoppingCart, Star, Shield, Headphones,
-  ChevronRight
+  ChevronRight, Maximize, X
 } from "lucide-react";
 import { getPackageById, type Package as PackageType } from "../data/store";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -26,6 +26,7 @@ function formatPrice(price: number) {
 export function PackageDetail() {
   const { id } = useParams<{ id: string }>();
   const [pkg, setPkg] = useState<PackageType | undefined>();
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -69,7 +70,7 @@ export function PackageDetail() {
           {/* Left / Main */}
           <div className="lg:col-span-2 space-y-6">
             {/* Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-sm">
+            <div className="relative rounded-2xl overflow-hidden shadow-sm group">
               <ImageWithFallback
                 src={pkg.image}
                 alt={pkg.name}
@@ -82,6 +83,14 @@ export function PackageDetail() {
                   {pkg.badge}
                 </div>
               )}
+              {/* Fullscreen Button */}
+              <button
+                onClick={() => setIsFullscreen(true)}
+                className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-gray-700 p-2.5 rounded-xl shadow-lg transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Resmi büyüt"
+              >
+                <Maximize className="w-5 h-5" />
+              </button>
             </div>
 
             {/* Info */}
@@ -194,6 +203,28 @@ export function PackageDetail() {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Image Modal */}
+      {isFullscreen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setIsFullscreen(false)}
+        >
+          <button
+            onClick={() => setIsFullscreen(false)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white p-2"
+            aria-label="Kapat"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <img
+            src={pkg.image}
+            alt={pkg.name}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }
