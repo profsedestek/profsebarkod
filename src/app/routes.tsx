@@ -27,6 +27,7 @@ function ProtectedAdminLayout() {
     <AuthProvider>
       <ProtectedRoute>
         <AdminLayout />
+        <Toaster position="top-right" richColors />
       </ProtectedRoute>
     </AuthProvider>
   );
