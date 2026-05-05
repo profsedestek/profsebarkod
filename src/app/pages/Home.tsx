@@ -67,82 +67,50 @@ export function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* ── HERO ── */}
-      <section className="relative bg-gradient-to-br from-[#0D47A1] via-[#1565C0] to-[#1976D2] pt-16 overflow-hidden">
-        {/* decorative circles */}
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-gray-900/10 rounded-full" />
-        <div className="absolute bottom-0 -left-10 w-64 h-64 bg-white/5 rounded-full" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1 text-center lg:text-left z-10">
-            <div className="inline-flex items-center gap-2 bg-gray-900/20 border border-gray-900/40 rounded-full px-4 py-1 mb-6">
-              <Zap className="w-4 h-4 text-gray-900" />
-              <span className="text-gray-900 text-sm font-medium">Türkiye'nin Lider Barkod Çözüm Ortağı</span>
-            </div>
-            <h1 className="text-white text-4xl lg:text-6xl font-extrabold leading-tight mb-6">
-              İşletmeniz İçin <br />
-              <span className="text-gray-900">Eksiksiz Barkod</span><br />
-              Çözümleri
-            </h1>
-            <p className="text-white/80 text-lg max-w-xl mb-8">
-              Market, depo, restoran ve daha fazlası için hazır barkod paketleri. Kurulumdan desteğe kadar her şey dahil.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#paketler"
-                className="bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg"
-              >
-                Paketleri Keşfet <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="#iletisim"
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
-              >
-                Ücretsiz Teklif Al
-              </a>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 mt-12 justify-center lg:justify-start">
-              {[
-                { value: "500+", label: "Mutlu Müşteri" },
-                { value: "15+", label: "Yıl Deneyim" },
-                { value: "7/24", label: "Teknik Destek" },
-              ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-gray-900 text-2xl font-extrabold">{s.value}</div>
-                  <div className="text-white/70 text-xs mt-0.5">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Hero image */}
-          <div className="flex-1 flex justify-center z-10">
-            <div className="relative w-full max-w-lg">
-              <div className="absolute inset-0 bg-gray-900/20 rounded-3xl rotate-3" />
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1623123096729-26b481292919?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
-                alt="Barkod Sistemleri"
-                className="relative rounded-3xl shadow-2xl w-full object-cover h-72 lg:h-96 animate-float"
-              />
-              {/* floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
-                <div className="bg-[#0D47A1] rounded-xl p-2.5">
-                  <Shield className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-[#0D47A1] font-bold text-sm">2 Yıl Garanti</div>
-                  <div className="text-gray-500 text-xs">Tüm Ürünlerde</div>
-                </div>
+      <section className="relative bg-white pt-16 overflow-hidden min-h-[80vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left Content */}
+            <div className="flex-1 text-center lg:text-left z-10">
+              <h1 className="font-sandra text-gray-900 text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
+                Geleceğin Stok Yönetimiyle Tanışın
+              </h1>
+              <p className="font-santa text-[#0D47A1] text-xl lg:text-2xl mb-4">
+                Hızınıza hız, satışınıza değer katın.
+              </p>
+              <p className="font-dm text-gray-600 text-base lg:text-lg max-w-xl mb-8">
+                Akıllı entegrasyonla işinizi büyütmeye bugün başlayın
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="#iletisim"
+                  className="bg-[#0D47A1] hover:bg-[#0B3D8C] text-white font-semibold px-8 py-3.5 rounded-[10px] flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl animate-key-press-active"
+                  onClick={(e) => {
+                    const target = e.currentTarget;
+                    target.classList.add('animate-key-press');
+                    setTimeout(() => target.classList.remove('animate-key-press'), 150);
+                  }}
+                >
+                  Sistemi Kur
+                </a>
+                <a
+                  href="#ozellikler"
+                  className="bg-white hover:bg-gray-50 text-gray-900 font-semibold px-8 py-3.5 rounded-[10px] flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl border border-gray-200 animate-key-press-active"
+                  onClick={(e) => {
+                    const target = e.currentTarget;
+                    target.classList.add('animate-key-press');
+                    setTimeout(() => target.classList.remove('animate-key-press'), 150);
+                  }}
+                >
+                  Özellikleri İncele
+                </a>
               </div>
             </div>
+
+            {/* Right Content - Empty for now */}
+            <div className="flex-1" />
           </div>
         </div>
-
-        {/* wave */}
-        <svg className="w-full" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="white" />
-        </svg>
       </section>
 
       {/* ── BRAND BAR ── */}

@@ -12,8 +12,36 @@
   }
 }
 
+@keyframes key-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @layer utilities {
   .animate-float {
     animation: float-up-down 3s ease-in-out infinite;
+  }
+  
+  .animate-key-press {
+    animation: key-press 0.15s ease-in-out;
+  }
+  
+  .font-sandra {
+    font-family: 'Sandra', serif;
+  }
+  
+  .font-santa {
+    font-family: 'Santa', serif;
+  }
+  
+  .font-dm {
+    font-family: 'DM Sans', sans-serif;
   }
 }
